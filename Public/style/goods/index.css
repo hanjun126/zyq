@@ -1,0 +1,69 @@
+.block-goods .item {
+  width: 33.333333333333%;
+}
+.block-goods .item .cn {
+  margin: 0 3px 20px 3px;
+}
+.block-goods .item .cn img {
+  width: 100%;
+}
+.block-goods .item .cn .name {
+  padding: 5px 0;
+}
+.block-goods .item .cn .name a {
+  font-size: 14px;
+}
+.block-goods .item .cn .name a:hover {
+  color: #FF6700;
+}
+.block-goods .item .cn .price {
+  color: #FF6B1C;
+}
+.block-left {
+  margin-right: 20px;
+  width: 240px;
+}
+.block-left .item {
+  margin-bottom: 20px;
+  border: 1px solid #999;
+}
+.block-left .item .title {
+  height: 36px;
+  line-height: 36px;
+  text-indent: 5px;
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #999;
+  font-size: 15px;
+  font-weight: 400;
+}
+.block-left .item .cn {
+  padding: 5px;
+  min-height: 100px;
+}
+.block-left .type .cn a {
+  display: inline-block;
+  padding: 2px 5px;
+  color: #888;
+}
+.block-left .type .cn a:hover {
+  color: #333;
+}
+.block-left .browsed .cn .goods {
+  margin-bottom: 20px;
+}
+.block-left .browsed .cn .goods img {
+  width: 100%;
+}
+.block-left .browsed .cn .goods .name {
+  padding: 5px 0;
+}
+.block-left .browsed .cn .goods .name a {
+  font-size: 14px;
+}
+.block-left .browsed .cn .goods .name a:hover {
+  color: #FF6700;
+}
+.block-left .browsed .cn .goods .price {
+  color: #FF6B1C;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,44 @@
+<div class="block-head">
+	<div class="container toolbar">
+		<div class="line">
+			欢迎光临 登录注册
+			<a href="__MODULE__/Shopping/index">购物车</a>
+			<li class="tel"><i class="icon-phone"></i>135-9050-0758</li>
+		</div>
+	</div>
+	<div class="container nav">
+		<div class="line flex-justify-content-sb">
+			<div class="logo">
+				<a href="__MODULE__/Index/index">
+					<img src="__PUBLIC__/img/logo.png"/>
+				</a>
+			</div>
+			<div class="cl">
+				<a href="__MODULE__/Index/index">首页</a>
+				<a href="__MODULE__/Cases/index">案例展示</a>
+				<a href="__MODULE__/Goods/index/id/0">全部商品</a>
+				<a href="__MODULE__/Goods/index/id/1">办公沙发</a>
+				<a href="__MODULE__/Goods/index/id/2">办公椅子</a>
+				<a href="__MODULE__/Goods/index/id/3">办公桌子</a>
+				<a href="__MODULE__/Goods/index/id/4">办公柜子</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="__PUBLIC__/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".serach").mouseenter(function(){
+			$(".serach .key").animate({
+		   	width:"160", opacity:"1"
+		   },"slow");
+		});
+		
+		$(".serach").mouseleave(function(){
+			$(".serach .key").animate({
+	   		width:"0",opacity:"0"
+	   	}, 1000);
+		});
+	});
+</script>

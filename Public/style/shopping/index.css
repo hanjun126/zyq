@@ -1,0 +1,56 @@
+.block-cart {
+  padding: 20px 0;
+}
+.block-cart .process {
+  height: 52px;
+  background: url(../../img/shopping/buy-process.png) center 0 no-repeat;
+}
+.block-cart .list {
+  padding: 40px 0;
+}
+.block-cart .list tr th {
+  padding: 10px 0;
+  border-top: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
+  font-size: 16px;
+  background-color: #F3F3F3;
+}
+.block-cart .list tr td {
+  padding: 5px 0;
+  border-bottom: 1px dotted #666;
+  text-align: center;
+}
+.block-cart .list tr td .name {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.block-cart .list tr td .del {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.block-cart .list tr td .del:hover {
+  background-color: red;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  color: #FFF;
+}
+.block-cart .list tr .tl {
+  text-align: left;
+}
+.block-cart .gotopay {
+  margin-left: 20px;
+}
+.block-cart .gotopay a {
+  padding: 8px 20px;
+  font-size: 16px;
+  background-color: #C0483E;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #FFF;
+}
+/*# sourceMappingURL=index.css.map */

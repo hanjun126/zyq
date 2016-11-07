@@ -1,0 +1,20 @@
+[ 2016-11-07T20:45:06+08:00 ] 127.0.0.1 /zyq/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.021630s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.030987s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.031165s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000328s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000599s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.360468s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.360693s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.025874s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.026098s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.025975s ]
+INFO: [ app_end ] --END-- [ RunTime:0.026203s ]
+

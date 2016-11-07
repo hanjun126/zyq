@@ -1,0 +1,105 @@
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：分页参数
+-->
+<include file="Public:pagerForm" />
+
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：搜索
+-->
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__CONTROLLER__" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>账号：</label>
+				<input type="text" name="account" value="{$search.account}"/>
+			</li>
+			<li>
+				<label>用户名：</label>
+				<input type="text" name="name" value="{$search.name}"/>
+			</li>
+		</ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：内容
+-->
+<div class="pageContent">
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：数据操作
+	-->
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__CONTROLLER__/add" target="dialog" mask="true" width="800" height="480"><span>新增</span></a></li>
+			<li><a class="delete" href="__CONTROLLER__/del/id/{sid}" target="ajaxTodo" title="你确定要删除吗？" warn="请选择"><span>删除</span></a></li>
+			<li><a class="edit" href="__CONTROLLER__/edit/id/{sid}" target="dialog" mask="true" width="800" height="480" warn="请选择"><span>编辑</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="__CONTROLLER__/pwd/id/{sid}" target="dialog" mask="true" width="800" height="480" warn="请选择"><span>修改密码</span></a></li>
+		</ul>
+	</div>
+
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：表格显示数据
+	-->
+	<table class="table" width="100%" asc="asc" desc="desc" layoutH="138">
+		<thead>
+			<tr>
+				<th width="50" orderField="id" <eq name="sort" value="id">class="{$order}"</eq>>序号</th>
+				<th width="200" orderField="acount" <eq name="sort" value="acount">class="{$order}"</eq>>账号</th>
+				<th width="120" orderField="name" <eq name="sort" value="name">class="{$order}"</eq>>姓名</th>
+				<th width="120" orderField="sex" <eq name="sort" value="sex">class="{$order}"</eq>>性别</th>
+				<th width="120" orderField="pri" <eq name="sort" value="pri">class="{$order}"</eq>>权限</th>
+				<th orderField="regtime" <eq name="sort" value="regtime">class="{$order}"</eq>>注册时间</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid" rel="{$vo['id']}">
+					<td>{$i}</td>
+					<td>{$vo.acount}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.sex}</td>
+					<td>{$vo.pri}</td>
+					<td>{$vo.regtime}</td>
+				</tr>
+			</volist>
+		</tbody>
+	</table>
+
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：页码显示
+	-->
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="1" <eq name="numPerPage" value="1">selected="selected"</eq>>1</option>
+				<option value="20" <eq name="numPerPage" value="20">selected="selected"</eq>>20</option>
+				<option value="50" <eq name="numPerPage" value="50">selected="selected"</eq>>50</option>
+				<option value="100" <eq name="numPerPage" value="100">selected="selected"</eq>>100</option>
+				<option value="200" <eq name="numPerPage" value="200">selected="selected"</eq>>200</option>
+			</select>
+			<span>条，共{$totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+</div>

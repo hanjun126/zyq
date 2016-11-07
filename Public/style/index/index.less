@@ -1,0 +1,215 @@
+.block-banner {
+    position: relative;
+    overflow: hidden;
+    
+    .list {
+        li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+    }
+    
+    .dot {
+        position: absolute;
+        bottom: 40px;
+        z-index: 999;
+        
+        li {
+            margin: 0 3px;
+            width: 40px;
+            height: 8px;
+            cursor: pointer;
+            background-color: #DED4C8;
+            
+            &:hover {
+                background-color: #F9F3EC;
+            }
+            
+            &.active {
+                background-color: #A40202;
+            }
+        }
+    }
+}
+
+
+.block-tip {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    
+    .zh {
+        font-family: Microsoft YaHei;
+        font-size: 24px;
+        color: #494949;
+    }
+    
+    .en {
+        margin-top: 3px;
+        font-family: ZapR, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        color: #949494;
+    }
+}
+
+
+.block-join {
+    height: 518px;
+    background: url(../../img/box1_b.png) no-repeat;
+    
+    .item {
+        width: 366px;
+        height: 258px;
+    
+        .ref {
+            display: block;
+            margin: 0 auto;
+            margin-top: 37px;
+            width: 135px;
+            height: 135px;
+            background: #aca39c;
+            text-align: center;
+            -moz-border-radius: 135px;
+            -webkit-border-radius: 135px;
+            border-radius: 135px;
+            
+            &:hover {
+                background: #CB0000;
+            }
+            
+            img {
+                margin-top: 40px;
+            }
+        }
+        
+        .zh {
+            margin-top: 18px;
+            display: block;
+            font-family: "Microsoft YaHei";
+            font-size: 16px;
+            color: #2b2b2b;
+            
+            &:hover {
+                color: #CB0000;
+            }
+        }
+        
+        .en {
+            font-family: "ZapR", "Arial", "Helvetica", "sans-serif";
+            font-size: 10px;
+            color: #949494;
+        }
+    }
+}
+
+
+.block-about {
+    padding: 50px 0;
+    background: #f5eee6;
+    
+    .item {
+        width: 213px;
+        height: 295px;
+        background: url(../../img/about.jpg) no-repeat;
+        
+        .index {
+            display: block;
+            margin-top: 40px;
+            margin-bottom: 140px;
+            width: 53px;
+            height: 51px;
+            background: url(../../img/box2_ban.png) no-repeat;
+            text-align: center;
+            line-height: 51px;
+            font-family: ZapR, Arial, Helvetica, sans-serif;
+            color: #494949;
+            font-size: 24px;
+            
+            &.active, &:hover {
+                background: url(../../img/box2_ban1.png) no-repeat;
+                color: #fff;
+            }
+        }
+        
+        .zh {
+            font-family: Microsoft YaHei;
+            font-size: 16px;
+            color: #fff;
+        }
+        
+        .en {
+            font-family: ZapR, Arial, Helvetica, sans-serif;
+            line-height: 20px;
+            font-size: 10px;
+            color: #fff;
+            bottom: 30px;
+        }
+    }
+}
+
+
+.block-news {
+    li {
+        margin: 10px 0;
+        
+        .img {
+            img {
+                width: 100px;
+                height: 100px;
+                -moz-border-radius: 50px;
+                -webkit-border-radius: 50px;
+                border-radius: 50px;
+            }
+        }
+    
+        .text {
+            margin: 0 20px;
+            width: 220px;
+            color: #565656;
+                
+            .title {
+                font-family: Microsoft YaHei;
+                margin-top: 5px;
+            }
+            
+            .desc {
+                font-size: 12px;
+                margin-top: 10px;
+                line-height: 20px;
+            }
+            
+            &:hover {
+                color: #CB0000;
+            }
+        }
+    }
+}
+
+.block-taste {
+    margin-bottom: 40px;
+    
+    li {
+        .title {
+            padding: 8px 0px;
+            width: 240px;
+            border-bottom: 1px dotted #565656;
+            border-top: 1px dotted #565656;
+            font-family: Microsoft YaHei;
+            font-size: 14px;
+            color: #565656;
+            
+            &:hover {
+                color: #CB0000;
+            }
+        }
+        
+        .img {
+            img {
+                width: 240px;
+                height: 210px;
+                margin-top: 12px;
+            }
+        }
+    }
+}

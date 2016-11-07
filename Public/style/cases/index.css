@@ -1,0 +1,22 @@
+.block-cases {
+  padding: 10px 0;
+}
+.block-cases .item {
+  width: 33.33%;
+}
+.block-cases .item .cn {
+  margin: 10px 3px;
+}
+.block-cases .item .cn img {
+  width: 100%;
+}
+.block-cases .item .cn .name {
+  padding: 10px 0;
+}
+.block-cases .item .cn .name a {
+  font-size: 18px;
+}
+.block-cases .item .cn .name a:hover {
+  color: #FF6700;
+}
+/*# sourceMappingURL=index.css.map */

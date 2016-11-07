@@ -1,0 +1,227 @@
+/* 全局清除 */
+body {margin: 0; padding: 0;}
+* {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+*:before, *:after {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+
+/* 布局 */
+.layout {width: 100%;}
+.container, .container-fluid {margin: 0 auto; padding-left: 10px; padding-right: 10px;}
+
+/* 响应式布局 */
+@media(min-width:760px) {
+    .container {width: 750px;}
+    .layout {min-width: 750px;}
+}
+@media(min-width:1000px) {
+    .container {width: 1000px;}
+    .layout {min-width: 1000px;}
+}
+@media(min-width:1200px){
+    .container {width: 1200px;}
+    .layout {min-width: 1200px;}
+}
+
+/* 固定布局 */
+.container {width: 1200px;}
+.layout {min-width: 1200px;}
+
+/* 初始化 */
+.x-1,.x-2,.x-3,.x-4,.x-5,.x-6,.x-7,.x-8,.x-9,.x-10,.x-11,.x-12,
+.xl-1,.xl-2,.xl-3,.xl-4,.xl-5,.xl-6,.xl-7,.xl-8,.xl-9,.xl-10,.xl-11,.xl-12,
+.xs-1,.xs-2,.xs-3,.xs-4,.xs-5,.xs-6,.xs-7,.xs-8,.xs-9,.xs-10,.xs-11,.xs-12,
+.xm-1,.xm-2,.xm-3,.xm-4,.xm-5,.xm-6,.xm-7,.xm-8,.xm-9,.xm-10,.xm-11,.xm-12,
+.xb-1,.xb-2,.xb-3,.xb-4,.xb-5,.xb-6,.xb-7,.xb-8,.xb-9,.xb-10,.xb-11,.xb-12 {
+    position: relative;
+    min-height:1px;
+}
+.row {margin: 0; padding: 0;}
+
+/* 生成间隔 */
+.MakeSpace(@flag, @pixel) { 
+    .row-@{flag} {
+        margin-left: -@pixel;
+        margin-right: -@pixel;
+        
+        .x-1,.x-2,.x-3,.x-4,.x-5,.x-6,.x-7,.x-8,.x-9,.x-10,.x-11,.x-12,
+        .xl-1,.xl-2,.xl-3,.xl-4,.xl-5,.xl-6,.xl-7,.xl-8,.xl-9,.xl-10,.xl-11,.xl-12,
+        .xs-1,.xs-2,.xs-3,.xs-4,.xs-5,.xs-6,.xs-7,.xs-8,.xs-9,.xs-10,.xs-11,.xs-12,
+        .xm-1,.xm-2,.xm-3,.xm-4,.xm-5,.xm-6,.xm-7,.xm-8,.xm-9,.xm-10,.xm-11,.xm-12,
+        .xb-1,.xb-2,.xb-3,.xb-4,.xb-5,.xb-6,.xb-7,.xb-8,.xb-9,.xb-10,.xb-11,.xb-12 {
+            padding-right: @pixel;
+            padding-left: @pixel
+        }
+    }
+}
+
+.MakeSpace(middle, 5px);
+.MakeSpace(small, 2px);
+.MakeSpace(big, 10px);
+
+/* 生成响应式网格布局 */
+.MakeX(@x, @counter:0) when (@counter < 13) {      
+    .@{x}-@{counter} {float: left; width: (100% / 12 * @counter);}
+    .@{x}-offset-@{counter} {margin-left: (100% / 12 * @counter);}
+    .@{x}-push-@{counter} {right: (100% / 12 * @counter);}
+    .@{x}-pull-@{counter} {left: (100% / 12 * @counter);}
+
+    .MakeX(@x, @counter + 1);
+}
+/* normal */
+.MakeX(x);
+/* little */
+@media (min-width:300px) {
+  .MakeX(xl);
+}
+/* small */
+@media (min-width:760px) {
+  .MakeX(xs);
+}
+/* middle */
+@media (min-width:1000px) {
+  .MakeX(xm);
+}
+/* big */
+@media (min-width:1200px) {
+  .MakeX(xb);
+}
+
+/* 响应式显示和隐藏 */
+/* little */
+@media (max-width:760px) {
+  .show-l { display:block !important; }
+  .hidden-l { display:none !important; }
+}
+/* small */
+@media (min-width:761px) and (max-width:1000px) {
+  .show-s { display:block !important; }
+  .hidden-s { display:none !important; }
+}
+/* middle */
+@media (min-width:1001px) and (max-width:1200px) {
+  .show-m { display:block !important; }
+  .hidden-m { display:none !important; }
+}
+/* big */
+@media (min-width:1201px) {
+  .show-b { display:block !important; }
+  .hidden-b { display:none !important; }
+}
+
+/* 清除浮动 */
+.clearfix:after,.layout:after,.container:after,.container-fluid:after,
+.row:after,.row-small:after,.row-middle:after,.row-big:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+}
+.clearfix,.layout,.container,.container-layout,
+.line,.line-small,.line-middle,.line-big {
+    display: block !important;
+}
+
+/* 功能  */
+.f-fl {float: left !important;}
+.f-fr {float: right !important;}
+.f-fc {display: block !important; margin-left: auto; margin-right: auto;}
+.f-cl {clear: both !important;}
+.f-tal {text-align: left;}
+.f-tar {text-align: right;}
+.f-tac {text-align: center;}
+.f-taj {text-align: justify;}
+.f-tcr {color: red;}
+.f-tcg {color: green;}
+.f-tcb {color: blue;}
+.f-tcbk {color: black;}
+.f-tcw {color: white;}
+.f-tc0 {color: #000;}
+.f-tc3 {color: #333;}
+.f-tc6 {color: #666;}
+.f-tc9 {color: #999;}
+.f-tcdd {color: #ddd;}
+.f-fwn {font-weight: normal;}
+.f-fwb {font-weight: bold;}
+.f-fw4 {font-weight: 400;}
+.f-fw5 {font-weight: 500;}
+.f-fw6 {font-weight: 600;}
+.f-fw7 {font-weight: 700;}
+.f-fw8 {font-weight: 800;}
+.f-bkr {background-color: red;}
+.f-bkg {background-color: green;}
+.f-bkb {background-color: blue;}
+.f-bkbla {background-color: black;}
+.f-bkdd {background-color: #ddd;}
+.f-hidden {display: none !important;}
+.f-hide {display: none !important;}
+.f-show {display: block !important;}
+.f-invisible {visibility: hidden;}
+.f-hide-text {font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0;}
+.img-responsive {display: block; max-width: 100%; height: auto; vertical-align: middle;}
+.img-border {border: solid 1px #ddd; padding: 4px;}
+.img-rounded {border-radius: 6px;}
+.img-circle {border-radius: 50%;}
+
+/* 生成margin 和 padding */
+.MakeMarPad(@count) {
+    .f-m@{count} {margin: @count;}
+    .f-mt@{count} {margin-top: @count;}
+    .f-mb@{count} {margin-bottom: @count;}
+    .f-ml@{count} {margin-left: @count;}
+    .f-mr@{count} {margin-right: @count;}
+    .f-mtb@{count} {margin-top: @count; margin-bottom: @count;}
+    .f-mlr@{count} {margin-left: @count; margin-right: @count;}
+    
+    .f-p@{count} {padding: @count;}
+    .f-pt@{count} {padding-top: @count;}
+    .f-pb@{count} {padding-bottom: @count;}
+    .f-pl@{count} {padding-left: @count;}
+    .f-pr@{count} {padding-right: @count;}
+    .f-ptb@{count} {padding-top: @count; padding-bottom: @count;}
+    .f-plr@{count} {padding-left: @count; padding-right: @count;}
+}
+
+.MakeMarPad(0);
+.MakeMarPad(3px);
+.MakeMarPad(5px);
+.MakeMarPad(8px);
+.MakeMarPad(10px);
+.MakeMarPad(15px);
+.MakeMarPad(20px);
+.MakeMarPad(25px);
+.MakeMarPad(30px);
+.MakeMarPad(35px);
+.MakeMarPad(40px);
+.MakeMarPad(45px);
+.MakeMarPad(50px);
+.MakeMarPad(60px);
+.MakeMarPad(70px);
+.MakeMarPad(80px);
+.MakeMarPad(90px);
+.MakeMarPad(100px);
+
+/* 局部清除样式 */
+.wapper {
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    font-family: "Microsoft YaHei","simsun","Helvetica Neue",Arial,Helvetica,sans-serif;
+    
+    ul,ol,li {list-style: none; margin: 0;}
+    dl,dt,dd {margin: 0;}
+    a {color: #333; text-decoration: none; outline: 0;}
+    a:hover,a:active,a:visited {color: #C81623; text-decoration: none; outline: 0;}
+    em,i,u {font-style: normal;}
+    small {font-size: 80%;}
+    img {display:block; max-width:100% !important; height:auto; border: none; vertical-align: middle;}
+    table {border-spacing: 0; border-collapse: collapse;}
+    td,th {padding: 0;}
+    input {
+        border: 1px solid #d5d5d5;
+        padding: 5px;
+        color: #333;
+        font-family: "Microsoft YaHei","simsun","Helvetica Neue",Arial,Helvetica,sans-serif;
+        outline: 0;
+    }
+}

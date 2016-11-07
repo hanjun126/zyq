@@ -1,0 +1,40 @@
+<?php if (!defined('THINK_PATH')) exit();?><div class="pageContent">
+	<form method="post" action="/zyq/index.php/Admin/Carousel/insert" enctype="multipart/form-data"
+		class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<div class="unit">
+				<label>轮播图片：</label>
+				<input name="imgpath" type="file" />建议尺寸1920 * 500
+			</div>
+			<div class="unit">
+				<label>超链接：</label>
+				<input type="text" name="url" class="required url" maxlength="260" size="100" />
+			</div>
+			<div class="unit">
+				<label>标题：</label>
+				<input type="text" name="title" class="required" maxlength="60" size="60" />
+			</div>
+			<div class="unit">
+				<label>提示：</label>
+				<input type="text" name="alt" class="required" maxlength="60" size="60" />
+			</div>
+			<div class="unit">
+				<label>排序：</label>
+				<input type="text" name="sort" class="required digits" value="0" />
+			</div>
+			<div class="unit">
+				<label>是否可用：</label>
+				<select class="combox" name="enable">
+						<option value="0" selected="selected">可用</option>
+						<option value="1">不可用</option>
+				</select>
+			</div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

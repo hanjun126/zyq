@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<title>逸家盛宇办公家具</title>
+		
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/third/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/hui.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/public.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/shopping/index.css"/>
+	</head>
+	<body>
+		<include file="Public:head" />
+		
+		<div class="container block-cart">
+			<div class="line">
+				<div class="process flex-flex-1"></div>
+			</div>
+			
+			<div class="line">
+				<table border="0" cellspacing="0" cellpadding="0" class="list">
+					<tr>
+						<th width="100">序号</th>
+						<th class="tl" width="520">商品</th>
+						<th width="100">单价</th>
+						<th width="200">数量</th>
+						<th width="100">总价</th>
+						<th width="80">操作</th>
+					</tr>
+					<for start="1" end="10">
+						<tr>
+							<td width="100">{$i}</td>
+							<td class="tl" width="520">
+								<div class="f-fl">
+									<a href="#"><img src="__PUBLIC__/img/logo.png"/></a>
+								</div>
+								<div class="f-fl name">
+									<a href="#">超大豪华办公椅大豪华办公椅</a>
+								</div>
+							</td>
+							<td width="100">100.00</td>
+							<td width="200">
+								<button>+</button>
+								<input type="" name="" id="" value="1" size="4" />
+								<button>-</button>
+							</td>
+							<td width="100">1000.0</td>
+							<td width="80">
+								<span class="del">X</span>
+							</td>
+						</tr>
+					</for>
+				</table>
+			</div>
+			
+			<div class="line flex-justify-content-end padding-tb-20px">
+				<div class="total">
+					总共12，总价：<span>￥</span>12.00
+				</div>
+				<div class="gotopay">
+					<a href="__MODULE__/shopping/pay">去付款</a>
+				</div>
+			</div>
+		</div>
+		
+		<include file="Public:foot" />
+	</body>
+</html>

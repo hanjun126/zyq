@@ -1,0 +1,116 @@
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：分页参数
+-->
+<include file="Public:pagerForm" />
+
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：搜索
+-->
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__CONTROLLER__" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>用户名：</label>
+				<input type="text" name="account" value="{$search.account}"/>
+			</li>
+			<li>
+				<label>用户名：</label>
+				<input type="text" name="xx" value="{$search.xx}"/>
+			</li>
+		</ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+
+<!--
+	作者：hanjun126@163.com
+	时间：2016-06-10
+	描述：内容
+-->
+<div class="pageContent">
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：数据操作
+	-->
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="edit" href="__CONTROLLER__/Order/detail/id/{sid}" target="navTab" rel="OrderDetail" warn="请选择"><span>订单详情</span></a></li>
+			<li><a class="delete" href="__CONTROLLER__/cancel/id/{sid}" target="ajaxTodo" title="你确定要删除吗？" warn="请选择"><span>取消</span></a></li>
+		</ul>
+	</div>
+
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：表格显示数据
+	-->
+	<table class="table" width="100%" asc="asc" desc="desc" layoutH="138">
+		<thead>
+			<tr>
+				<th width="50" orderField="id" <eq name="sort" value="id">class="{$order}"</eq>>序号</th>
+				<th width="200" orderField="sn" <eq name="sort" value="sn">class="{$order}"</eq>>订单号</th>
+				<th width="120" orderField="amount" <eq name="sort" value="amount">class="{$order}"</eq>>数量</th>
+				<th width="120" orderField="total" <eq name="sort" value="total">class="{$order}"</eq>>总价</th>
+				<th width="120" orderField="ordertime" <eq name="sort" value="ordertime">class="{$order}"</eq>>下单时间</th>
+				<th width="120" orderField="status" <eq name="sort" value="status">class="{$order}"</eq>>状态</th>
+				<th width="120" orderField="pay" <eq name="sort" value="pay">class="{$order}"</eq>>是否支付</th>
+				<th width="120" orderField="paytype" <eq name="sort" value="paytype">class="{$order}"</eq>>支付类型</th>
+				<th width="120" orderField="paytime" <eq name="sort" value="paytime">class="{$order}"</eq>>支付时间</th>
+				<th width="120" orderField="contact" <eq name="sort" value="contact">class="{$order}"</eq>>联系人</th>
+				<th width="120" orderField="phone" <eq name="sort" value="phone">class="{$order}"</eq>>电话</th>
+				<th width="120" orderField="address" <eq name="sort" value="address">class="{$order}"</eq>>地址</th>
+				<th width="120" orderField="post" <eq name="sort" value="post">class="{$order}"</eq>>邮编</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid" rel="{$vo['id']}">
+					<td>{$i}</td>
+					<td>{$vo.sn}</td>
+					<td>{$vo.amount}</td>
+					<td>{$vo.total}</td>
+					<td>{$vo.ordertime}</td>
+					<td>{$vo.status}</td>
+					<td>{$vo.pay}</td>
+					<td>{$vo.paytype}</td>
+					<td>{$vo.paytime}</td>
+					<td>{$vo.contact}</td>
+					<td>{$vo.phone}</td>
+					<td>{$vo.address}</td>
+					<td>{$vo.post}</td>
+				</tr>
+			</volist>
+		</tbody>
+	</table>
+
+	<!--
+		作者：hanjun126@163.com
+		时间：2016-06-10
+		描述：页码显示
+	-->
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="1" <eq name="numPerPage" value="1">selected="selected"</eq>>1</option>
+				<option value="20" <eq name="numPerPage" value="20">selected="selected"</eq>>20</option>
+				<option value="50" <eq name="numPerPage" value="50">selected="selected"</eq>>50</option>
+				<option value="100" <eq name="numPerPage" value="100">selected="selected"</eq>>100</option>
+				<option value="200" <eq name="numPerPage" value="200">selected="selected"</eq>>200</option>
+			</select>
+			<span>条，共{$totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+</div>

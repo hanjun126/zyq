@@ -1,0 +1,32 @@
+<div class="pageContent">
+	<form method="post" action="__CONTROLLER__/insert"
+	 class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+			<for start="0" end="11">
+				<div class="unit">
+					<input id="testFileInput-{$i}" type="file" name="imgshow{$i}" 
+						uploaderOption="{
+							swf:'__PUBLIC__/DWZ/uploadify/scripts/uploadify.swf',
+							uploader:'__CONTROLLER__/uploadImg',
+							formData:{index:{$i},id:{$id}},
+							buttonText:'上传展示图片-{$i}',
+							fileSizeLimit:'3072KB',
+							fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;',
+							fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;',
+							auto:true,
+							multi:false,
+							onUploadSuccess:uploadifySuccess,
+							onQueueComplete:uploadifyQueueComplete
+						}"
+					/>
+				</div>
+			</for>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"lf.e;;lfc.....ler><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

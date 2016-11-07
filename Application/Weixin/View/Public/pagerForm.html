@@ -1,0 +1,10 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}"/>
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}"/>
+	
+	<input type="hidden" name="_numPerPage" value="{$numPerPage}" />
+	<input type="hidden" name="_orderField" value="{$sort}"/>
+	<input type="hidden" name="_orderDirection" value="{$order}"/>
+</form>

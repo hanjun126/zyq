@@ -1,0 +1,39 @@
+.block-succeed {
+  padding: 20px 0;
+}
+.block-succeed .process {
+  height: 52px;
+  background: url(../../img/shopping/buy-process.png) center -180px no-repeat;
+}
+.block-succeed .tip {
+  margin: 100px 0;
+}
+.block-succeed .tip .txt {
+  padding: 40px 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #A2333C;
+}
+.block-succeed .tip .osn {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.block-succeed .tip .look {
+  display: inline-block;
+  margin-right: 20px;
+}
+.block-succeed .tip .look i {
+  font-size: 22px;
+  color: #A2333C;
+}
+.block-succeed .tip .cn {
+  display: inline-block;
+  margin-right: 20px;
+}
+.block-succeed .tip .cn i {
+  font-size: 22px;
+  color: #A2333C;
+}
+/*# sourceMappingURL=succeed.css.map */
