@@ -68,7 +68,7 @@
 			</div>
 			
 			<div class="line flex-wrap block-cases">
-				<?php $__FOR_START_31867__=1;$__FOR_END_31867__=10;for($i=$__FOR_START_31867__;$i < $__FOR_END_31867__;$i+=1){ ?><div class="item flex-row-start">
+				<?php $__FOR_START_7008__=1;$__FOR_END_7008__=10;for($i=$__FOR_START_7008__;$i < $__FOR_END_7008__;$i+=1){ ?><div class="item flex-row-start">
 						<div class="cn flex-flex-1">
 							<a href="#">
 								<img src="http://i3.mifile.cn/a4/f43035f0-7b18-442c-a022-4708829a67e5"/>

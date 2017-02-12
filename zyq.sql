@@ -21,7 +21,7 @@ USE zyq;								-- 使用数据库
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 配置表，进行通用属性配置，如公司名称，联系方式等等
-CREATE TABLE IF NOT EXISTS `zyq_config` (
+CREATE TABLE IF NOT EXISTS `config` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `ckey` VARCHAR(20) NOT NULL COMMENT '键',
   `cvalue` VARCHAR(1000) NOT NULL COMMENT '值',
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `zyq_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='配置表';
 
 -- 初始化配置
-INSERT INTO zyq_config (ckey, cvalue) VALUES
+INSERT INTO config (ckey, cvalue) VALUES
 ('wzbt', '逸家盛宇网上商城'),	/*网站标题*/
 ('wzbq', 'Copyright@2015-2016 成都逸家盛宇 版权所有 蜀ICP备10206706号-7'),	/*网站版权*/
 ('gsjc', '逸家盛宇'),	/*公司简称*/
@@ -40,10 +40,20 @@ INSERT INTO zyq_config (ckey, cvalue) VALUES
 ('qyyx', 'yjct@163.com'),	/*企业邮箱*/
 ('fwsd', '8:00-24:00');		/*服务时段*/
 
+-- 图片表，保存图片
+-- 0-产品图片，1-详情图片，2-轮播图片
+CREATE TABLE IF NOT EXISTS `img` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
+  `ckey` VARCHAR(20) NOT NULL COMMENT '键',
+  `cvalue` VARCHAR(1000) NOT NULL COMMENT '值',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='配置表';
+
+
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 轮播表
-CREATE TABLE IF NOT EXISTS `zyq_carousel` (
+CREATE TABLE IF NOT EXISTS `carousel` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `imgpath` VARCHAR(260) NOT NULL COMMENT '图片路径',
   `url` VARCHAR(260) NOT NULL COMMENT '超链接url',
@@ -57,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `zyq_carousel` (
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 管理员表
-CREATE TABLE IF NOT EXISTS `zyq_admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `acount` VARCHAR(20) NOT NULL UNIQUE COMMENT '账号',
   `pwd` VARCHAR(32) NOT NULL COMMENT '密码',
@@ -69,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `zyq_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- 测试数据
-INSERT INTO zyq_admin (acount, name, pwd, sex, pri) VALUES
+INSERT INTO admin (acount, name, pwd, sex, pri) VALUES
 ('admin', '张三', md5('88888888'), 0, 0),
 ('admin1', '李四', md5('88888888'), 1, 1),
 ('admin2', '王二', md5('88888888'), 0, 2),
@@ -79,7 +89,7 @@ INSERT INTO zyq_admin (acount, name, pwd, sex, pri) VALUES
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 用户表
-CREATE TABLE IF NOT EXISTS `zyq_user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `usertype` INT NOT NULL DEFAULT 0 COMMENT '用户类型，0-个人用户，1-企业用户',
   `phone` VARCHAR(20) NOT NULL UNIQUE COMMENT '手机号码',
@@ -93,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `zyq_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- 测试数据
-INSERT INTO zyq_user (usertype, phone, email, pwd, name, regplace) VALUES
+INSERT INTO user (usertype, phone, email, pwd, name, regplace) VALUES
 (0, '13281819620', 'user1@qq.com', md5('88888888'), '测试1', '成都'),
 (0, '13281819621', 'user2@qq.com', md5('88888888'), '测试2', '成都'),
 (0, '13281819622', 'user3@qq.com', md5('88888888'), '测试3', '成都'),
@@ -111,7 +121,7 @@ INSERT INTO zyq_user (usertype, phone, email, pwd, name, regplace) VALUES
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 第三方账号
-CREATE TABLE IF NOT EXISTS `zyq_third` (
+CREATE TABLE IF NOT EXISTS `third` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `acount` VARCHAR(60) NOT NULL UNIQUE COMMENT '第三方账号',
@@ -119,13 +129,13 @@ CREATE TABLE IF NOT EXISTS `zyq_third` (
   `token` CHAR(32) NOT NULL COMMENT '标识',
   `thirdtype` INT NOT NULL COMMENT '第三方账号类型，0-qq，1-新浪微博，2-网易邮箱，……',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='第三方账号';
 
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 常用送货地址
-CREATE TABLE IF NOT EXISTS `zyq_address` (
+CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `contact` VARCHAR(20) NOT NULL COMMENT '联系人',
@@ -134,13 +144,13 @@ CREATE TABLE IF NOT EXISTS `zyq_address` (
   `post` CHAR(6) COMMENT '邮编',
   `def` INT NOT NULL DEFAULT 0 COMMENT '是否默认地址，0-否，1-是',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='常用送货地址';
 
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 无极限类别表
-CREATE TABLE IF NOT EXISTS `zyq_category` (
+CREATE TABLE IF NOT EXISTS `category` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `pid` INT NOT NULL DEFAULT 0 COMMENT '父id',
   `idpath` VARCHAR(1000) NOT NULL COMMENT 'id路径，如：0;1;2;',
@@ -156,13 +166,13 @@ CREATE TABLE IF NOT EXISTS `zyq_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='无极限类别表';
 
 -- 初始化
-ALTER TABLE zyq_category AUTO_INCREMENT 1;
-INSERT INTO zyq_category (name, pid, idpath) VALUES
+ALTER TABLE category AUTO_INCREMENT 1;
+INSERT INTO category (name, pid, idpath) VALUES
 ('产品分类', 0, '-0-'),	/*产品分类*/
 ('内容分类', 0, '-0-');	/*内容分类*/
 
-ALTER TABLE zyq_category AUTO_INCREMENT 10001;
-INSERT INTO zyq_category (name, pid, idpath, lv) VALUES
+ALTER TABLE category AUTO_INCREMENT 10001;
+INSERT INTO category (name, pid, idpath, lv) VALUES
 ('办公椅子', 1, '-0-1-', 1), ('办公桌子', 1, '-0-1-', 1), ('办公沙发', 1, '-0-1-', 1),
 ('办公柜子', 1, '-0-1-', 1), ('办公配件', 1, '-0-1-', 1),	/*一级分类*/
 
@@ -184,7 +194,7 @@ INSERT INTO zyq_category (name, pid, idpath, lv) VALUES
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 内容管理表
-CREATE TABLE IF NOT EXISTS `zyq_cms` (
+CREATE TABLE IF NOT EXISTS `cms` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `categoryid` INT NOT NULL COMMENT '外键，类别id，用于级联删除',
   `title` VARCHAR(200) NOT NULL COMMENT '标题',
@@ -195,13 +205,13 @@ CREATE TABLE IF NOT EXISTS `zyq_cms` (
   `cmstime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '时间',
   `enable` INT NOT NULL DEFAULT 0 COMMENT '是否可用，0-可用，1-不可用',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`categoryid`) REFERENCES `zyq_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`categoryid`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容管理表';
 
 /*--------------------------------------------------------------------
 --------------------------------------------------------------------*/
 -- 商品属性表
-CREATE TABLE IF NOT EXISTS `zyq_attr` (
+CREATE TABLE IF NOT EXISTS `attr` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `akey` VARCHAR(20) NOT NULL COMMENT '关键字',
   `avalue` VARCHAR(200) NOT NULL COMMENT '属性值',
@@ -210,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `zyq_attr` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品属性表';
 
-INSERT INTO zyq_attr (akey, avalue) VALUES
+INSERT INTO attr (akey, avalue) VALUES
 /*颜色*/
 ('color', '银白色'), ('color', '经典黑'), ('color', '朱红色'), ('color', '橘黄色'), ('color', '天蓝色'),
 /*材质*/
@@ -218,10 +228,9 @@ INSERT INTO zyq_attr (akey, avalue) VALUES
 /*风格*/
 ('style', '现代'), ('style', '古典'), ('style', '欧式'), ('style', '田园'), ('style', '经典');
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
+
 -- 商品表
-CREATE TABLE IF NOT EXISTS `zyq_goods` (
+CREATE TABLE IF NOT EXISTS `goods` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `categoryid` INT NOT NULL COMMENT '外键，类别表id',
   `colorid` INT NOT NULL COMMENT '外键，属性表id，颜色',
@@ -253,43 +262,39 @@ CREATE TABLE IF NOT EXISTS `zyq_goods` (
   `addtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加日期，2015-12-12 12:12:12',
   `enable` INT NOT NULL DEFAULT 0 COMMENT '是否可用，0-可用，1-不可用',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`categoryid`) REFERENCES `zyq_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`colorid`) REFERENCES `zyq_attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`textureid`) REFERENCES `zyq_attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`styleid`) REFERENCES `zyq_attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`categoryid`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`colorid`) REFERENCES `attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`textureid`) REFERENCES `attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`styleid`) REFERENCES `attr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
+
 -- 商品收藏表
-CREATE TABLE IF NOT EXISTS `zyq_collection` (
+CREATE TABLE IF NOT EXISTS `collection` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `goodsid` INT NOT NULL COMMENT '外键，商品表id',
   `collecttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '收藏时间',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`goodsid`) REFERENCES `zyq_goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`goodsid`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品收藏表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
 -- 购物车表
-CREATE TABLE IF NOT EXISTS `zyq_cart` (
+CREATE TABLE IF NOT EXISTS `cart` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `goodsid` INT NOT NULL COMMENT '外键，商品表id',
   `goodscount` INT NOT NULL COMMENT '商品数量',
   `addtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入时间',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`goodsid`) REFERENCES `zyq_goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`goodsid`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
+
 -- 评论表
-CREATE TABLE IF NOT EXISTS `zyq_review` (
+CREATE TABLE IF NOT EXISTS `review` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `goodsid` INT NOT NULL COMMENT '外键，商品表id',
@@ -297,14 +302,16 @@ CREATE TABLE IF NOT EXISTS `zyq_review` (
   `star` INT NOT NULL DEFAULT 0 COMMENT '星级',
   `reviewtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间，2015-12-12 12:12:12',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`goodsid`) REFERENCES `zyq_goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`goodsid`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
+-------------------------------
+-- 订单相关
+-------------------------------
+
 -- 订单表
-CREATE TABLE IF NOT EXISTS `zyq_order` (
+CREATE TABLE IF NOT EXISTS `order` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `userid` INT NOT NULL COMMENT '外键，用户表id',
   `sn` VARCHAR(100) NOT NULL COMMENT '订单号',
@@ -321,13 +328,11 @@ CREATE TABLE IF NOT EXISTS `zyq_order` (
   `address` VARCHAR(200) NOT NULL COMMENT '地址',
   `post` CHAR(6) COMMENT '邮编',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`userid`) REFERENCES `zyq_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
 -- 订单详情表
-CREATE TABLE IF NOT EXISTS `zyq_order_detail` (
+CREATE TABLE IF NOT EXISTS `order_detail` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `orderid` INT NOT NULL COMMENT '外键，订单表id',
   `goodsid` INT NOT NULL COMMENT '外键，商品表id',
@@ -336,14 +341,17 @@ CREATE TABLE IF NOT EXISTS `zyq_order_detail` (
   `discount` DECIMAL(10,2) NOT NULL COMMENT '折扣',
   `saleprice` DECIMAL(10,2) NOT NULL COMMENT '销售价',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`orderid`) REFERENCES `zyq_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`goodsid`) REFERENCES `zyq_goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`orderid`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`goodsid`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单详情表';
 
-/*--------------------------------------------------------------------
---------------------------------------------------------------------*/
+
+-------------------------------
+-- 其他
+-------------------------------
+
 -- 案例表
-CREATE TABLE IF NOT EXISTS `zyq_case` (
+CREATE TABLE IF NOT EXISTS `case` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键，自动增长',
   `title` VARCHAR(60) NOT NULL COMMENT '标题',
   `usp` VARCHAR(200) NOT NULL COMMENT '卖点',
@@ -359,3 +367,31 @@ CREATE TABLE IF NOT EXISTS `zyq_case` (
   `enable` INT(10) NOT NULL DEFAULT 0 COMMENT '是否可用，0-可用，1-不可用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='案例表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

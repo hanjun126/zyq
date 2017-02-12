@@ -1,0 +1,12 @@
+[ 2016-11-20T14:20:33+08:00 ] ::1 /zyq/index.php/Login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+ERR: 无法加载模块:Login
+
+[ 2016-11-20T14:21:09+08:00 ] ::1 /zyq/index.php/pay
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000532s ]
+ERR: 无法加载模块:Pay
+
